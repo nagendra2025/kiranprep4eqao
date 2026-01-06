@@ -127,7 +127,8 @@ export default function GenerateTestPage() {
         if (!selectedImage) {
           throw new Error('No image selected');
         }
-        formData.append('image', selectedImage);
+        // TypeScript now knows selectedImage is not null after the check
+        formData.append('image', selectedImage as File);
         formData.append('input_type', 'image');
       }
       if (explanation.trim()) {
