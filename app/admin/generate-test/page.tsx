@@ -124,6 +124,9 @@ export default function GenerateTestPage() {
         formData.append('source_question', sourceQuestion.trim());
         formData.append('input_type', 'text');
       } else {
+        if (!selectedImage) {
+          throw new Error('No image selected');
+        }
         formData.append('image', selectedImage);
         formData.append('input_type', 'image');
       }

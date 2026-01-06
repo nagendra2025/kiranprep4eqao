@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAttempt, getUserAttempts } from '@/lib/utils/db-helpers';
 import { createServerClient } from '@/lib/supabase/server';
+import type { Attempt } from '@/types/database';
 
 // POST /api/attempts - Create a new attempt
 export async function POST(request: NextRequest) {
@@ -63,7 +64,7 @@ export async function GET(request: NextRequest) {
 
     const isAdmin = profile?.role === 'ADMIN';
 
-    let attempts;
+    let attempts: Attempt[];
     if (isAdmin) {
       // Admin can see all attempts
       const { data, error } = await supabase
@@ -79,7 +80,7 @@ export async function GET(request: NextRequest) {
         );
       }
 
-      attempts = (data || []) as typeof attempts;
+      attempts = (data || []) as Attempt[];
     } else {
       // Regular users see only their attempts
       attempts = await getUserAttempts();

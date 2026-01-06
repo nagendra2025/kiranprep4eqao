@@ -21,7 +21,7 @@ export default async function AdminLayout({
       return;
     }
 
-    user = authUser;
+    user = authUser as { id: string; email: string | undefined };
 
     // Check if user is admin
     const { data: profile, error: profileError } = await supabase

@@ -106,7 +106,7 @@ CRITICAL: The numbers and labels in the diagram MUST match the question text EXA
       n: 1,
     });
 
-    const imageUrl = response.data[0]?.url;
+    const imageUrl = response.data?.[0]?.url;
     if (!imageUrl) {
       console.warn(`Failed to generate image for question ${questionNumber}`);
       return undefined;

@@ -21,7 +21,7 @@ export default async function CandidateLayout({
       return;
     }
 
-    user = authUser;
+    user = authUser as { id: string; email: string | undefined };
 
     // Check if user is candidate (or default to candidate if admin check fails)
     const { data: profile, error: profileError } = await supabase
